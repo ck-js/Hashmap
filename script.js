@@ -1,24 +1,3 @@
-// function stringToNumber(string) {
-//     let hashCode = 0;
-  
-//     const primeNumber = 31;
-//     for (let i = 0; i < string.length; i++) {
-//       hashCode = primeNumber * hashCode + string.charCodeAt(i);
-//     }
-  
-//     return hashCode;
-//   }
-  
-  
-//   function hash(name, surname) {
-//     return stringToNumber(name) + stringToNumber(surname);
-//   }
-  
-
-//   let person1 = hash("Fred", "");
-
-//   console.log(person1);
-// console.log(37599 % 17);
 
 class Hashmap {
     constructor() {
@@ -30,6 +9,8 @@ class Hashmap {
         const primeNumber = 31;
         for (let i = 0; i < key.length; i++) {
           hashCode = primeNumber * hashCode + key.charCodeAt(i);
+        //   console.log(key.charCodeAt(i));
+        // console.log(hashCode);
         }
      
         return hashCode;
@@ -38,6 +19,15 @@ class Hashmap {
         const index = this.hash(key) % this.buckets.length;
         this.buckets[index] = value;
         console.log(this.buckets);
+
+      }
+      get(key) {
+const index = this.hash(key) % this.buckets.length;
+const value = this.buckets[index];
+if (!value) return null;
+return value
+
+
 
 
       }
@@ -51,7 +41,8 @@ class Hashmap {
 const hashmap = new Hashmap();
 // console.log(hashmap.hash("Carlos"));
 hashmap.set("Carlos", "Developer");
-hashmap.set("Carla", "Frontend Developer");
+// hashmap.set("Carla", "Frontend Developer");
+console.log(hashmap.get('Carlos'));
 
 
 
