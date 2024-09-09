@@ -69,22 +69,22 @@ return null
       }
       remove(key) {
         const index = this.hash(key) % this.buckets.length;
-        const bucket = this.buckets[index];
+        let bucket = this.buckets[index];
     
-
-        if (bucket !== undefined) {
-            // Assuming each bucket is an array of key-value pairs
-            for (let i = 0; i < bucket.length; i++) {
-                if (bucket[i][0] === key) {
-                    bucket.splice(i, 1); // Remove the key-value pair
-                    if (bucket.length === 0) {
-                        this.buckets[index] = undefined; // Set the bucket to undefined if empty
-                    }
-                    return true; // Indicate successful removal
+        while (bucket) {
+            if (bucket.key === key) {
+                this.buckets[index] = bucket.next;
+                return true;
+            }
+            if (bucket.next) {
+                if (bucket.next.key === key) {
+                    bucket.next = bucket.next.next;
+                    return true;
                 }
             }
+            bucket = bucket.next;
         }
-        return false; // Indicate that the key was not found
+        return false;
     }
 
      
@@ -101,7 +101,7 @@ hashmap.set("Carla", "Frontend Developer");
 // hashmap.set("Carla", "Backend Developer");
 console.log(hashmap.get('Carla'));
 // console.log(hashmap.has('arlos'));
-// console.log(hashmap.remove("Carlos"))
+console.log(hashmap.remove("Carla"))
 console.log(hashmap);
 
 // if (index < 0 || index >= buckets.length) {
