@@ -15,11 +15,11 @@ class Hashmap {
         let hashCode = 3;
            
         const primeNumber = 31;
-        // for (let i = 0; i < key.length; i++) {
-        //   hashCode = primeNumber * hashCode + key.charCodeAt(i);
-        // //   console.log(key.charCodeAt(i));
-        // // console.log(hashCode);
-        // }
+        for (let i = 0; i < key.length; i++) {
+          hashCode = primeNumber * hashCode + key.charCodeAt(i);
+        //   console.log(key.charCodeAt(i));
+        // console.log(hashCode);
+        }
      
         return hashCode;
       }
@@ -86,6 +86,18 @@ return null
         }
         return false;
     }
+    length() {
+        let count = 0;
+        for (let i = 0; i < this.buckets.length; i++) {
+            let currentBucket = this.buckets[i];
+            while (currentBucket) {
+                count++;
+                currentBucket = currentBucket.next;
+            }
+        }
+        return count;
+    }
+
 
      
 }
@@ -99,9 +111,10 @@ hashmap.set("Carlos", "Developer");
 // hashmap.set("Carlos", "Designer");
 hashmap.set("Carla", "Frontend Developer");
 // hashmap.set("Carla", "Backend Developer");
-console.log(hashmap.get('Carla'));
+// console.log(hashmap.get('Carla'));
 // console.log(hashmap.has('arlos'));
-console.log(hashmap.remove("Carla"))
+// console.log(hashmap.remove("Carla"))
+console.log(hashmap.length());
 console.log(hashmap);
 
 // if (index < 0 || index >= buckets.length) {
