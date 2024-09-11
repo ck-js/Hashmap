@@ -9,7 +9,7 @@ class ListNode {
 }
 class Hashmap {
     constructor() {
-        this.buckets = new Array(8);
+        this.buckets = new Array(17);
         this.size = 0;
         this.loadFactor = 0.7
     }
@@ -38,10 +38,6 @@ for (let i = 0; i < oldBuckets.length; i++) {
 
     }
 }
-
-
-
-
     }
 
       set(key, value) {
@@ -102,11 +98,13 @@ return null
         while (bucket) {
             if (bucket.key === key) {
                 this.buckets[index] = bucket.next;
+                this.size -= 1;
                 return true;
             }
             if (bucket.next) {
                 if (bucket.next.key === key) {
                     bucket.next = bucket.next.next;
+                    this.size -= 1;
                     return true;
                 }
             }
@@ -127,6 +125,7 @@ return null
     }
 clear() {
     this.buckets = new Array(17);
+    this.size = 0;
     
 }
 keys() {
@@ -168,31 +167,4 @@ return entries;
      
 }
 
-
-
-
-const hashmap = new Hashmap();
-// console.log(hashmap.hash("Carlos"));
-hashmap.set("Carlos", "Developer");
-// hashmap.set("Carlos", "Designer");
-hashmap.set("Carla", "Frontend Developer");
-hashmap.set("arla", "Frontend Developer");
-hashmap.set("rla", "Frontend Developer");
-hashmap.set("Car", "Frontend Developer");
-hashmap.set("Ca", "Frontend Developer");
-// hashmap.set("Casssr", "Frontend Developer");
-// hashmap.set("Carla", "Backend Developer");
-// console.log(hashmap.get('Carla'));
-// console.log(hashmap.has('arlos'));
-// console.log(hashmap.remove("Carla"))
-// console.log(hashmap.length());
-// console.log(hashmap.clear());
-// console.log(hashmap.keys());
-// console.log(hashmap.values());
-// console.log(hashmap.entries());
-console.log(hashmap.buckets.length);
-console.log(hashmap);
-
-// if (index < 0 || index >= buckets.length) {
-//     throw new Error("Trying to access index out of bound");
-//   }
+export default Hashmap;
